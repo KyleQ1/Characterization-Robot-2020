@@ -127,7 +127,7 @@ class TelemetryManager {
    * collected data.
    */
   struct TestParameters {
-    bool fast = false;
+    bool fast = true;
     bool forward = false;
     bool rotate = false;
 

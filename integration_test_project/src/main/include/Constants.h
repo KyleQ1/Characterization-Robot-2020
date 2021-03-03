@@ -44,10 +44,10 @@ constexpr auto kAngularKA = 0.3_V / 1_rad_per_s_sq;
 }  // namespace Drivetrain
 
 namespace SimpleMotor {
-constexpr int kLeaderPort = 5;
-constexpr int kFollowerPort = 6;
+constexpr int kRightPort = 9;
+constexpr int kLeftPort = 10;
 
-constexpr int kEncoderPorts[2] = {4, 5};
+constexpr int kEncoderPorts[2] = {6, 7};
 
 constexpr auto kV = 1.98_V / 1_rad_per_s;
 constexpr auto kA = 0.2_V / 1_rad_per_s_sq;
@@ -68,8 +68,8 @@ constexpr units::meter_t kHeight{std::numeric_limits<double>::max()};
 }  // namespace Elevator
 
 namespace Arm {
-constexpr int kLeaderPort = 9;
-constexpr int kFollowerPort = 10;
+constexpr int kLeaderPort = 6;
+constexpr int kFollowerPort = 7;
 
 constexpr int kEncoderPorts[2] = {8, 9};
 

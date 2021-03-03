@@ -7,7 +7,7 @@
 #include <frc/RobotController.h>
 
 void SimpleMotor::SimulationPeriodic() {
-  m_flywheelSimulator.SetInputVoltage(units::volt_t{m_leader.Get()} *
+  m_flywheelSimulator.SetInputVoltage(units::volt_t{m_rightGrbx.Get()} *
                                       frc::RobotController::GetInputVoltage());
   m_flywheelSimulator.Update(5_ms);
 

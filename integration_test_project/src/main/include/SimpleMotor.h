@@ -17,6 +17,7 @@
 
 #include "Constants.h"
 #include "SysIdMechanism.h"
+#include "rev/CANSparkMax.h"
 
 /**
  * Represents a flywheel mechanism.
@@ -27,7 +28,7 @@ class SimpleMotor : public SysIdMechanism {
     // Set the distance per pulse for the flywheel encoders. We can simply use
     // the 1 divided by the resolution as that denotes one rotation of the
     // flywheel.
-    m_encoder.SetDistancePerPulse(2 * wpi::math::pi / kEncoderResolution);
+    m_encoder.SetDistancePerPulse((wpi::math::pi * 2.0) * kGearRatio / 512.0);
 
     m_encoder.Reset();
   }
@@ -44,13 +45,15 @@ class SimpleMotor : public SysIdMechanism {
   }
 
  private:
-  static constexpr int kEncoderResolution = 4096;
+  static constexpr double kGearRatio = 8.0;
   double distance = 0;
 
-  frc::PWMVictorSPX m_leader{Constants::SimpleMotor::kLeaderPort};
-  frc::PWMVictorSPX m_follower{Constants::SimpleMotor::kFollowerPort};
+  rev::CANSparkMax m_leftGrbx{Constants::SimpleMotor::kRightPort, 
+                              rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_rightGrbx{Constants::SimpleMotor::kLeftPort, 
+                              rev::CANSparkMax::MotorType::kBrushless};
 
-  frc::SpeedControllerGroup m_group{m_leader, m_follower};
+  frc::SpeedControllerGroup m_group{m_leftGrbx, m_rightGrbx};
 
   frc::Encoder m_encoder{Constants::SimpleMotor::kEncoderPorts[0],
                          Constants::SimpleMotor::kEncoderPorts[1]};
@@ -61,5 +64,5 @@ class SimpleMotor : public SysIdMechanism {
       frc::LinearSystemId::IdentifyVelocitySystem<units::radians>(
           Constants::SimpleMotor::kV, Constants::SimpleMotor::kA);
   frc::sim::FlywheelSim m_flywheelSimulator{m_flywheelSystem,
-                                            frc::DCMotor::Vex775Pro(2), 1.0};
+                                            frc::DCMotor::NEO(2), 1.0};
 };
