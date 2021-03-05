@@ -64,5 +64,5 @@ class SimpleMotor : public SysIdMechanism {
       frc::LinearSystemId::IdentifyVelocitySystem<units::radians>(
           Constants::SimpleMotor::kV, Constants::SimpleMotor::kA);
   frc::sim::FlywheelSim m_flywheelSimulator{m_flywheelSystem,
-                                            frc::DCMotor::NEO(2), 1.0};
+                                            frc::DCMotor::NEO(2), 1.0 / 2.0};
 };
