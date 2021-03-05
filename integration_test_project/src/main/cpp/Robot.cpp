@@ -62,8 +62,7 @@ class Robot : public frc::TimedRobot {
   }
 
   void AutonomousInit() override {
-    std::string test =
-        frc::SmartDashboard::GetString("SysIdTest", "Drivetrain");
+    std::string test = frc::SmartDashboard::GetString("SysIdTest", "Simple");
     m_elevator.UpdateInitialSpeed();
     m_arm.ResetReadings();
 
@@ -150,7 +149,7 @@ class Robot : public frc::TimedRobot {
   Elevator m_elevator;
   Arm m_arm;
 
-  SysIdMechanism* m_mechanism = &m_drive;
+  SysIdMechanism* m_mechanism = &m_flywheel;
 
   std::vector<double> m_data;
   size_t m_counter = 0;
