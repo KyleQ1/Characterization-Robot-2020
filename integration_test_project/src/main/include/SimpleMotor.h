@@ -28,7 +28,7 @@ class SimpleMotor : public SysIdMechanism {
     // Set the distance per pulse for the flywheel encoders. We can simply use
     // the 1 divided by the resolution as that denotes one rotation of the
     // flywheel.
-    m_encoder.SetDistancePerPulse((wpi::math::pi * 2.0) * kGearRatio / 512.0);
+    m_encoder.SetDistancePerPulse(wpi::math::pi * 2.0 * kGearRatio / 512.0);
 
     m_encoder.Reset();
   }
