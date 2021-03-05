@@ -31,6 +31,9 @@ class SimpleMotor : public SysIdMechanism {
     m_encoder.SetDistancePerPulse(wpi::math::pi * 2.0 * kGearRatio / 512.0);
 
     m_encoder.Reset();
+
+    m_leftGrbx.SetInverted(true);
+    m_rightGrbx.SetInverted(false);
   }
 
   void SetPMotor(double value) override { m_group.Set(value); }
