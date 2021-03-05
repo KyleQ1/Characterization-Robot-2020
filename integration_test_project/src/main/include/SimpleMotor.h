@@ -48,10 +48,10 @@ class SimpleMotor : public SysIdMechanism {
   static constexpr double kGearRatio = 8.0;
   double distance = 0;
 
-  rev::CANSparkMax m_leftGrbx{Constants::SimpleMotor::kRightPort, 
+  rev::CANSparkMax m_leftGrbx{Constants::SimpleMotor::kLeftPort,
                               rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax m_rightGrbx{Constants::SimpleMotor::kLeftPort, 
-                              rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_rightGrbx{Constants::SimpleMotor::kRightPort,
+                               rev::CANSparkMax::MotorType::kBrushless};
 
   frc::SpeedControllerGroup m_group{m_leftGrbx, m_rightGrbx};
 
